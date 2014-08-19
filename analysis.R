@@ -70,7 +70,11 @@ all.data.summary.nights <- ddply(all.data.nights, c("chamber"), summarise,
 #combine subsets
 all.data.summary=rbind(all.data.summary.days, all.data.summary.nights)
 
-all.data.summary[,3:8] <-round(all.data.summary[,3:8],1) 
+#round values appropriately, temp adjusts by 0.1 degree, RH adjusts by 1%
+all.data.summary[,3:7] <-round(all.data.summary[,3:7],1) 
+all.data.summary[,8] <-round(all.data.summary[,8],0) 
+
+
 
 # for (i in 1:length(obj.names)) {
 #   
