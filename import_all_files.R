@@ -25,6 +25,7 @@ make.time=function(df) {
 }
 
 
+
 #actually read in the files
 for (i in 1:length(files)) {
   assign(obj.names[i], read.csv(files[i], 
@@ -46,8 +47,12 @@ for (i in 1:length(obj.names)) {
   assign(as.character(obj.names[i]), make.time(get(as.character(obj.names[i])))) 
 }
 
+
+
 #make a dataframe that translates the filesnames to their object names
 obj.to.filename=data.frame(Orginal.File=files, Object.Name=obj.names)
+
+#combine all the dataframes
 
 
 
@@ -59,6 +64,6 @@ setwd(old.wd)
 #clean up
 rm(files)
 rm(i)
-rm(obj.names)
+#rm(obj.names)
 rm(old.wd)
 #end file import code
