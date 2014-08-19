@@ -70,6 +70,8 @@ all.data.summary.nights <- ddply(all.data.nights, c("chamber"), summarise,
 #combine subsets
 all.data.summary=rbind(all.data.summary.days, all.data.summary.nights)
 
+all.data.summary[,3:8] <-round(all.data.summary[,3:8],1) 
+
 # for (i in 1:length(obj.names)) {
 #   
 #   #subset each dataframe by night and day
