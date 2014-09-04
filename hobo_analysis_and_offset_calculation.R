@@ -82,16 +82,16 @@ all.data.summary <- ddply(all.data, c("chamber"), summarise,
                           sd.RH   = sd(RH, na.rm=TRUE))
 
 #subset by night and day
-XTSDATA <- xts(all.data[, -6], all.data[, 6])
+XTSDATA <- xts(all.data[, -5], all.data[, 5])
 all.data.days=as.data.frame(XTSDATA["T08:30:00/T16:30:00"])
 all.data.days$temp=as.numeric(as.character(all.data.days$temp))
 all.data.days$RH=as.numeric(as.character(all.data.days$RH))
-all.data.days$dew.pt=as.numeric(as.character(all.data.days$dew.pt))
+#all.data.days$dew.pt=as.numeric(as.character(all.data.days$dew.pt))
 
 all.data.nights=as.data.frame(XTSDATA["T16:30:00/T08:30:00"])
 all.data.nights$temp=as.numeric(as.character(all.data.nights$temp))
 all.data.nights$RH=as.numeric(as.character(all.data.nights$RH))
-all.data.nights$dew.pt=as.numeric(as.character(all.data.nights$dew.pt))
+#all.data.nights$dew.pt=as.numeric(as.character(all.data.nights$dew.pt))
 
 
 #summarize subsets
@@ -140,6 +140,9 @@ all.data.summary[,8] <-round(all.data.summary[,8],0)
 #   night.rh=mean(as.numeric(nights$RH), na.rm=TRUE)
 # }
 
+write.csv(all.data.summary, file="summary_and_offsets_results.csv")
 
-
-
+library(gridExtra)
+pdf("summary_and_offsets_results.pdf", height=11, width=8.5)
+grid.table(all.data.summary)
+dev.off()
