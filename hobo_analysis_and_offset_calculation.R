@@ -4,6 +4,7 @@
 
 #get packages
 require("plyr")
+require("xts")
 #get list of files
 files = c(list.files(pattern="*.txt"), list.files(pattern="*.csv"))
 
