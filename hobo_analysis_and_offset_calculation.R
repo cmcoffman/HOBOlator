@@ -2,7 +2,8 @@
 #and run on other computers, ive removed all the working directory switching,
 #JUST RUN THE SCRIPT IN THE DIRECTORY YOU WANT and it will work on the *.csv files you see
 
-
+#get packages
+require("plyr")
 #get list of files
 files = c(list.files(pattern="*.txt"), list.files(pattern="*.csv"))
 
