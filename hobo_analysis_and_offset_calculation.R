@@ -22,7 +22,7 @@ for (i in 1:length(files)) {
   assign(obj.names[i], read.csv(files[i], 
                                 skip=2,
                                 header=FALSE,
-                                colClasses=c("numeric", "character","numeric","numeric","numeric", "NULL","NULL","NULL","NULL"),
+                                colClasses=c("numeric", "character","numeric","numeric","NULL", "NULL","NULL","NULL","NULL"),
                                 col.names = c("measurement.index","date.time","temp","RH","dew.pt", "NULL","NULL","NULL","NULL"), 
   )) 
 }
