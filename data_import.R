@@ -1,7 +1,7 @@
 #data import
 #set the filepath to where the files are
 #setwd("~/Documents/Research/Schultzlab/HOBOlator")
-filepath=file.path("2014_08_12")
+filepath=file.path("2015_02_18")
 filepath=normalizePath(filepath)
 source("import_all_files.R")
 

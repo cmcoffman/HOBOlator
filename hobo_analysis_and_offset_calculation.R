@@ -2,6 +2,9 @@
 #and run on other computers, ive removed all the working directory switching,
 #JUST RUN THE SCRIPT IN THE DIRECTORY YOU WANT and it will work on the *.csv files you see
 
+#clear workspace
+rm(list=ls())
+
 #get packages
 require("plyr")
 require("xts")
@@ -18,14 +21,35 @@ make.time=function(df) {
 }
 
 
+#make a dummy variable for the number of columns in each file
+num.col=NULL
+junk.cols=NULL
+col.classes=NULL
+col.names=NULL
+
+#column classes of the first 4 columns
+class=c("numeric", "character", "numeric", "numeric")
+name=c("measurement.index","date.time","temp","RH")
 
 #actually read in the files
 for (i in 1:length(files)) {
+  
+  #first figure out how many columns are in the file
+  #because its oddly tricky to only read in the first x columns...
+  num.col=max(count.fields(files[i], sep = ","))
+  #column classes of the remaining columns (all "NULL")
+  junk.cols=replicate(num.col-4, "NULL")
+  #make a vector of column classes
+  col.classes=c(class, junk.cols)
+  col.names=c(name, junk.cols)
   assign(obj.names[i], read.csv(files[i], 
                                 skip=2,
                                 header=FALSE,
-                                colClasses=c("numeric", "character","numeric","numeric","NULL", "NULL","NULL","NULL","NULL"),
-                                col.names = c("measurement.index","date.time","temp","RH","dew.pt", "NULL","NULL","NULL","NULL"), 
+                                colClasses=col.classes,
+                                col.names =col.names, 
+                                
+                                #colClasses=c("numeric", "character","numeric","numeric","NULL", "NULL","NULL","NULL","NULL","NULL","NULL","NULL","NULL"),
+                                #col.names = c("measurement.index","date.time","temp","RH","dew.pt", "NULL","NULL","NULL","NULL","NULL","NULL","NULL"), 
   )) 
 }
 
