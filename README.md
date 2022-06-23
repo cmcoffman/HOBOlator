@@ -1,6 +1,6 @@
 HOBOlator
 =========
-Say you operate several growth chambers or incubators and while they have their own thermostats and humidistats, you monitor the chambers with "HOBO" (Onset Computer Corp.) data loggers.
+Say you operate several growth chambers or incubators; while they have their own thermostats and humidistats, you monitor the chambers with "HOBO" (Onset Computer Corp.) data loggers.
 
 By exporting the HOBO logger data as .csv files, you can run these scripts on these files and it will suggest calibration offsets for your growth chambers based on the HOBO data.
 
